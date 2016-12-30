@@ -3,13 +3,10 @@ package perfect.util
 
 import chisel3._
 import config._
-import fox.Debug
 
 trait UniformPrintfs {
-  val p: Parameters
-
   def printfPrefix(prefix: String, message: String, args: Bits*): Unit = {
-    if (p(Debug)) { printf(prefix + message, args:_*) }}
+    printf(prefix + message, args:_*) }
 
   def printfInfo (m: String, a: Bits*) { printfPrefix("[INFO] ",  m, a:_*) }
   def printfWarn (m: String, a: Bits*) { printfPrefix("[WARN] ",  m, a:_*) }
