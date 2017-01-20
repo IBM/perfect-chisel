@@ -11,20 +11,20 @@ trait FletcherH {
 
 class FletcherCmd(n: Int) extends Bundle {
   val cmd = UInt(2.W)
-  val word = UInt(n.W)
+  val word = UInt((n/2).W)
   override def cloneType = new FletcherCmd(n).asInstanceOf[this.type]
 }
 
 class FletcherIO(n: Int) extends Bundle {
   val data = Valid(new FletcherCmd(n)).flip
-  val checksum = Output(UInt((n * 2).W))
+  val checksum = Output(UInt((n).W))
 }
 
 class Fletcher(n: Int) extends Module with FletcherH with UniformPrintfs {
   val io = IO(new FletcherIO(n))
 
-  val a = Reg(UInt(n.W), init = 0.U)
-  val b = Reg(UInt(n.W), init = 0.U)
+  val a = Reg(UInt((n/2).W), init = 0.U)
+  val b = Reg(UInt((n/2).W), init = 0.U)
 
   val do_reset = io.data.fire() && io.data.bits.cmd === k_reset.U
   val do_compute = io.data.fire() && io.data.bits.cmd === k_compute.U
