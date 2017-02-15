@@ -8,9 +8,11 @@ trait UniformPrintfs {
   def printfPrefix(prefix: String, message: String, args: Bits*): Unit = {
     printf(prefix + message, args:_*) }
 
-  def printfInfo (m: String, a: Bits*) { printfPrefix("[INFO] ",  m, a:_*) }
-  def printfWarn (m: String, a: Bits*) { printfPrefix("[WARN] ",  m, a:_*) }
-  def printfError(m: String, a: Bits*) { printfPrefix("[ERROR] ", m, a:_*) }
-  def printfDebug(m: String, a: Bits*) { printfPrefix("[DEBUG] ", m, a:_*) }
-  def printfTodo (m: String, a: Bits*) { printfPrefix("[TODO] ",  m, a:_*) }
+  val printfSigil = ""
+
+  def printfInfo (m: String, a: Bits*) { printfPrefix("[INFO] ",  printfSigil++m, a:_*) }
+  def printfWarn (m: String, a: Bits*) { printfPrefix("[WARN] ",  printfSigil++m, a:_*) }
+  def printfError(m: String, a: Bits*) { printfPrefix("[ERROR] ", printfSigil++m, a:_*) }
+  def printfDebug(m: String, a: Bits*) { printfPrefix("[DEBUG] ", printfSigil++m, a:_*) }
+  def printfTodo (m: String, a: Bits*) { printfPrefix("[TODO] ",  printfSigil++m, a:_*) }
 }
