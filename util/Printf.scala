@@ -1,4 +1,5 @@
-// See LICENSE.ibm for license details.
+// See LICENSE.IBM for license details.
+
 package perfect.util
 
 import chisel3._
