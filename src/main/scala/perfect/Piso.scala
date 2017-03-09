@@ -8,13 +8,13 @@ import chisel3.util._
 class PisoCmd(n: Int) extends Bundle {
   val data = UInt(n.W)
   val count = UInt(log2Up(n).W)
-  override def cloneType = new PisoCmd(n).asInstanceOf[this.type]
+  override def cloneType: this.type = new PisoCmd(n).asInstanceOf[this.type]
 }
 
 class PisoIO(n: Int) extends Bundle {
   val p = Decoupled(new PisoCmd(n)).flip
   val s = Valid(Bool())
-  override def cloneType = new PisoIO(n).asInstanceOf[this.type]
+  override def cloneType: this.type = new PisoIO(n).asInstanceOf[this.type]
 }
 
 class Piso(n: Int) extends Module with UniformPrintfs {
@@ -42,8 +42,10 @@ class Piso(n: Int) extends Module with UniformPrintfs {
   }
 
   when (io.p.fire()) {
-    printfInfo("Piso: Parallel bits 0x%x, count 0x%x\n", io.p.bits.data, io.p.bits.count)
+    printfInfo("Piso: Parallel bits 0x%x, count 0x%x\n", io.p.bits.data,
+      io.p.bits.count)
   }
 
-  assert(!(io.p.valid && !io.p.ready), "Piso: Received parallel data but not ready\n")
+  assert(!(io.p.valid && !io.p.ready),
+    "Piso: Received parallel data but not ready\n")
 }

@@ -13,7 +13,7 @@ trait FletcherH {
 class FletcherCmd(n: Int) extends Bundle {
   val cmd = UInt(2.W)
   val word = UInt((n/2).W)
-  override def cloneType = new FletcherCmd(n).asInstanceOf[this.type]
+  override def cloneType: this.type = new FletcherCmd(n).asInstanceOf[this.type]
 }
 
 class FletcherIO(n: Int) extends Bundle {
