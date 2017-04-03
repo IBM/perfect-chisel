@@ -3,7 +3,6 @@
 package perfect.util
 
 import chisel3._
-import config._
 
 trait UniformPrintfs {
   val printfSigil = ""
