@@ -12,7 +12,7 @@ class PisoCmd(n: Int) extends Bundle {
 }
 
 class PisoIO(n: Int) extends Bundle {
-  val p = Decoupled(new PisoCmd(n)).flip
+  val p = Flipped(Decoupled(new PisoCmd(n)))
   val s = Valid(Bool())
   override def cloneType: this.type = new PisoIO(n).asInstanceOf[this.type]
 }

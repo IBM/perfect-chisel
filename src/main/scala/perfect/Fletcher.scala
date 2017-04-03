@@ -17,7 +17,7 @@ class FletcherCmd(n: Int) extends Bundle {
 }
 
 class FletcherIO(n: Int) extends Bundle {
-  val data = Valid(new FletcherCmd(n)).flip
+  val data = Flipped(Valid(new FletcherCmd(n)))
   val checksum = Output(UInt((n).W))
 }
 
