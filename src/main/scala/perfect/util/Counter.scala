@@ -1,4 +1,4 @@
-// See LICENSE.IBM for license details.
+// See LICENSE for license details.
 
 package perfect
 
