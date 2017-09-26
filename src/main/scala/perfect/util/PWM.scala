@@ -1,5 +1,4 @@
 // See LICENSE for license details
-
 package perfect.util
 
 import chisel3._
