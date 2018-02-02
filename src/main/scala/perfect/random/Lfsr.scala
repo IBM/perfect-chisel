@@ -75,7 +75,7 @@ class Lfsr(n: Int, seed: Int = 1) extends Module {
 
   val io = IO(new PrngIo(n))
 
-  val shiftReg = Reg(init = Vec((seed.U(n.W)).toBools))
+  val shiftReg = RegInit(Vec((seed.U(n.W)).toBools))
   shiftReg.zipWithIndex.map {case (x, i) => { x := shiftReg((i + 1) % n) } }
   LfsrTaps(n) map (x => { shiftReg(x - 1) := shiftReg(0) ^ shiftReg(x) })
 

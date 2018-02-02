@@ -35,8 +35,8 @@ class FletcherIO(n: Int) extends Bundle {
 class Fletcher(n: Int) extends Module with FletcherH with UniformPrintfs {
   val io = IO(new FletcherIO(n))
 
-  val a = Reg(UInt((n/2).W), init = 0.U)
-  val b = Reg(UInt((n/2).W), init = 0.U)
+  val a = RegInit(UInt((n/2).W), 0.U)
+  val b = RegInit(UInt((n/2).W), 0.U)
 
   val do_reset = io.data.fire() && io.data.bits.cmd === k_reset.U
   val do_compute = io.data.fire() && io.data.bits.cmd === k_compute.U

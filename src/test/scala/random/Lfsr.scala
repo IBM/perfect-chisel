@@ -20,10 +20,10 @@ import math.pow
 
 class LfsrTester(n: Int, seed: Int = 1) extends BasicTester {
   val dut = Module(new Lfsr(n))
-  val count = Reg(init = 0.U((n + 1).W))
+  val count = RegInit(0.U((n + 1).W))
 
-  val s_INIT :: s_RUN :: s_CYCLE :: s_DONE :: Nil = Enum(UInt(), 4)
-  val state = Reg(UInt(4.W), init = s_INIT)
+  val s_INIT :: s_RUN :: s_CYCLE :: s_DONE :: Nil = Enum(4)
+  val state = RegInit(UInt(4.W), s_INIT)
 
   dut.io.seed.valid := state === s_INIT
   when (state === s_INIT) {

@@ -18,7 +18,7 @@ import chisel3.util._
 
 class PisoCmd(n: Int) extends Bundle {
   val data = UInt(n.W)
-  val count = UInt(log2Up(n).W)
+  val count = UInt(log2Ceil(n).W)
   override def cloneType: this.type = new PisoCmd(n).asInstanceOf[this.type]
 }
 
@@ -32,10 +32,10 @@ class Piso(n: Int) extends Module with UniformPrintfs {
   val io = IO(new PisoIO(n))
 
   val sr = Reg(UInt(n.W))
-  val count = Reg(UInt(log2Up(n).W))
+  val count = Reg(UInt(log2Ceil(n).W))
 
-  val sentCount = Reg(UInt(log2Up(n).W))
-  val hasData = Reg(init = false.B)
+  val sentCount = Reg(UInt(log2Ceil(n).W))
+  val hasData = RegInit(false.B)
   io.p.ready := !hasData
   when (io.p.fire()) {
     hasData := true.B
