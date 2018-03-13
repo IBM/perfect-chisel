@@ -21,13 +21,12 @@ trait FletcherH {
   val k_compute = 1
 }
 
-class FletcherCmd(n: Int) extends Bundle {
+class FletcherCmd(val n: Int) extends Bundle {
   val cmd = UInt(2.W)
   val word = UInt((n/2).W)
-  override def cloneType: this.type = new FletcherCmd(n).asInstanceOf[this.type]
 }
 
-class FletcherIO(n: Int) extends Bundle {
+class FletcherIO(val n: Int) extends Bundle {
   val data = Flipped(Valid(new FletcherCmd(n)))
   val checksum = Output(UInt((n).W))
 }
