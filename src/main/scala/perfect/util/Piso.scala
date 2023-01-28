@@ -19,13 +19,11 @@ import chisel3.util._
 class PisoCmd(n: Int) extends Bundle {
   val data = UInt(n.W)
   val count = UInt(log2Ceil(n).W)
-  override def cloneType: this.type = new PisoCmd(n).asInstanceOf[this.type]
 }
 
 class PisoIO(n: Int) extends Bundle {
   val p = Flipped(Decoupled(new PisoCmd(n)))
   val s = Valid(Bool())
-  override def cloneType: this.type = new PisoIO(n).asInstanceOf[this.type]
 }
 
 class Piso(n: Int) extends Module with UniformPrintfs {

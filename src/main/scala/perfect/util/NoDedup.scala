@@ -14,12 +14,11 @@
 package perfect
 package util
 
-import chisel3._
-import chisel3.experimental.ChiselAnnotation
-import firrtl.transforms.DedupModules
+import chisel3.RawModule
+import chisel3.experimental.doNotDedup
 
 trait NoDedup {
-  self: Module =>
+  self: RawModule =>
 
-  annotate(ChiselAnnotation(this, classOf[DedupModules], "nodedup!"))
+  doNotDedup(self)
 }

@@ -20,7 +20,6 @@ class PwmIo(n: Int) extends Bundle {
   val pulseWidth = Input(UInt(n.W))
   val period     = Input(UInt(n.W))
   val out        = Output(Bool())
-  override def cloneType: this.type = new PwmIo(n).asInstanceOf[this.type]
 }
 
 class Pwm(n: Int) extends Module {

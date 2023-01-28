@@ -17,7 +17,7 @@ import chisel3._
 import chisel3.util._
 
 class CounterWithReset(n: Int) extends Counter(n: Int) {
-  def reset(): Unit = { value := 0.U }
+  override def reset(): Unit = { value := 0.U }
 }
 
 class CounterModule(n: Int) extends Module {
